@@ -12,8 +12,12 @@
     require_once('connection.php');
 
     if(empty($_SESSION['email'])){
-        // header('location: http://' . $_SERVER['HTTP_HOST'] . '/purchase');
-        header('location: http://' . $_SERVER['HTTP_HOST'] . '/rrm_purchase/purchase');
+        // LOCAL
+        header('location: http://' . $_SERVER['HTTP_HOST'] . '/steel-assist');
+
+        // SERVER
+        // header('location: http://' . $_SERVER['HTTP_HOST']);
+
         exit();
     } else{
         date_default_timezone_set('Asia/Dhaka');

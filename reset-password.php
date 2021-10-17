@@ -65,7 +65,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p class="text-muted">Back to <a href="../purchase" class="text-muted ml-1"><b class="font-weight-semibold">Login</b></a></p>
+                                <p class="text-muted">Back to <a href="./" class="text-muted ml-1"><b class="font-weight-semibold">Login</b></a></p>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->

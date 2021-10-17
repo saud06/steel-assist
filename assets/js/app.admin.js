@@ -85,7 +85,7 @@ $(document).ready(function(){
                             confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!'
                         }).then((result) => {
                             if(result.value){
-                                window.location.href = '../purchase';
+                                window.location.href = './';
                             }
                         });
                     } else if(data.Type == 'error'){
@@ -157,7 +157,7 @@ $(document).ready(function(){
                                 confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!'
                             }).then((result) => {
                                 if(result.value){
-                                    window.location.href = '../purchase';
+                                    window.location.href = './';
                                 }
                             });
                         } else if(data.Type == 'error'){

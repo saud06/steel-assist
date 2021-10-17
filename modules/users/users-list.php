@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>RRM Inventory by RRM Gorup | User</title>
+        <title>RRM | User</title>
 
         <?php 
             require_once('../../sub-page-header.php');

@@ -11,7 +11,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>RRM Inventory by RRM Gorup | Login</title>
+        <title>RRM Steel</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A Fully Featured Requisition, Purchase and Inventory Management Software by RRM Steel" name="description" />
         <meta content="RRM Steel" name="author" />
@@ -84,7 +84,7 @@
         <!-- end page -->
 
         <footer class="footer footer-alt">
-            <?= date('Y'); ?> &copy; Copyright by <a href="www.rrmsteel.com.bd" target="_blank">RRM Steel</a>
+            <?= date('Y'); ?> &copy; Copyright by <a href="http://www.rrmsteel.com.bd" target="_blank">RRM Steel</a>
         </footer>
 
         <!-- Vendor js -->

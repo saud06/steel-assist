@@ -135,7 +135,11 @@
 
             if(mysqli_num_rows(mysqli_query($this->conn, "SELECT * FROM rrmsteel_parts WHERE parts_name = '$parts_name'"))){
                 // DELETE IMAGE FROM SERVER
-                unlink($_SERVER['DOCUMENT_ROOT'] . '/rrm_purchase/purchase/assets/images/uploads/' . $input['parts_image']);
+                // LOCAL
+                unlink($_SERVER['DOCUMENT_ROOT'] . '/steel-assist/assets/images/uploads/' . $parts_info['parts_image']);
+
+                // SERVER
+                // unlink($_SERVER['DOCUMENT_ROOT'] . '/assets/images/uploads/' . $parts_info['parts_image']);
 
                 exit(json_encode(array(
                     'Type' => 'error',
@@ -180,7 +184,11 @@
                     }
                 } else{
                     // DELETE IMAGE FROM SERVER
-                    unlink($_SERVER['DOCUMENT_ROOT'] . '/rrm_purchase/purchase/assets/images/uploads/' . $input['parts_image']);
+                    // LOCAL
+                    unlink($_SERVER['DOCUMENT_ROOT'] . '/steel-assist/assets/images/uploads/' . $parts_info['parts_image']);
+
+                    // SERVER
+                    // unlink($_SERVER['DOCUMENT_ROOT'] . '/assets/images/uploads/' . $parts_info['parts_image']);
 
                     exit(json_encode(array(
                         'Type' => 'error',
@@ -208,8 +216,13 @@
                 $parts_info = mysqli_fetch_assoc(mysqli_query($this->conn, "SELECT parts_image FROM rrmsteel_parts WHERE parts_id = '".$input['id']."' LIMIT 1"));
 
                 // DELETE IMAGE FROM SERVER
-                if(isset($parts_info))
-                    unlink($_SERVER['DOCUMENT_ROOT'] . '/rrm_purchase/purchase/assets/images/uploads/' . $parts_info['parts_image']);
+                if(isset($parts_info)){
+                    // LOCAL
+                    unlink($_SERVER['DOCUMENT_ROOT'] . '/steel-assist/assets/images/uploads/' . $parts_info['parts_image']);
+
+                    // SERVER
+                    // unlink($_SERVER['DOCUMENT_ROOT'] . '/assets/images/uploads/' . $parts_info['parts_image']);
+                }
 
                 $update_query = mysqli_query($this->conn, "UPDATE rrmsteel_parts SET parts_name = '".$input['parts_name']."', parts_nickname = '".$input['parts_nickname']."', category = '".$input['category']."', subcategory = '".$input['subcategory']."', subcategory_2 = '".$input['subcategory_2']."', type = '$type', apply_group = '$group', inv_type = '".$input['inv_type']."', unit = '".$input['unit']."', alert_qty = '".$input['alert_qty']."', parts_image = '".$input['parts_image']."', remarks = '".$input['remarks']."' WHERE parts_id = '".$input['id']."'");
             } else{
@@ -236,8 +249,13 @@
                     $parts_info = mysqli_fetch_assoc(mysqli_query($this->conn, "SELECT parts_image FROM rrmsteel_parts WHERE parts_id = '".$input['id']."' LIMIT 1"));
 
                     // DELETE IMAGE FROM SERVER
-                    if(isset($parts_info))
-                        unlink($_SERVER['DOCUMENT_ROOT'] . '/rrm_purchase/purchase/assets/images/uploads/' . $parts_info['parts_image']);
+                    if(isset($parts_info)){
+                        // LOCAL
+                        unlink($_SERVER['DOCUMENT_ROOT'] . '/steel-assist/assets/images/uploads/' . $parts_info['parts_image']);
+    
+                        // SERVER
+                        // unlink($_SERVER['DOCUMENT_ROOT'] . '/assets/images/uploads/' . $parts_info['parts_image']);
+                    }
                 }
 
                 exit(json_encode(array(
@@ -254,8 +272,13 @@
             $parts_info = mysqli_fetch_assoc(mysqli_query($this->conn, "SELECT parts_image FROM rrmsteel_parts WHERE parts_id = '".$input['id']."' LIMIT 1"));
 
             // DELETE IMAGE FROM SERVER
-            if(isset($parts_info))
-                unlink($_SERVER['DOCUMENT_ROOT'] . '/rrm_purchase/purchase/assets/images/uploads/' . $parts_info['parts_image']);
+            if(isset($parts_info)){
+                // LOCAL
+                unlink($_SERVER['DOCUMENT_ROOT'] . '/steel-assist/assets/images/uploads/' . $parts_info['parts_image']);
+
+                // SERVER
+                // unlink($_SERVER['DOCUMENT_ROOT'] . '/assets/images/uploads/' . $parts_info['parts_image']);
+            }
 
             $delete_parts_query = mysqli_query($this->conn, "DELETE FROM rrmsteel_parts WHERE parts_id = '".$input['id']."'");
 

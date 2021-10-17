@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>RRM Inventory by RRM Gorup | Home</title>
+        <title>RRM | Home</title>
 
         <?php 
             require_once('../dashboard-header.php');

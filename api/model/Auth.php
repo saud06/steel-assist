@@ -52,7 +52,7 @@
                 $token = md5($email);
 
                 $body = '<p>You have requested for a password reset. Please click on the link below to reset your password.</p><br>' .
-                    '<h4><a href="http://inventory.rrmsteel.com.bd/purchase/reset-password?uid=' . $user_id . '&token=' . $token. '">CLICK HERE<a></h4><br><br>';
+                    '<h4><a href="http://inventory.rrmsteel.com.bd/reset-password?uid=' . $user_id . '&token=' . $token. '">CLICK HERE<a></h4><br><br>';
 
                 if(Mailer($email, 'Forgot Password', $body)){
                     exit(json_encode(array(
