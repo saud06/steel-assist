@@ -53,12 +53,12 @@
     } elseif($_POST['purchase_data_type'] == 'fetch_purchase_bill_con'){
         if(!empty($_POST['purchase_id'])){
             $purchase = new Purchase();
-            echo $purchase->fetch_purchase_bill_con(mysqli_real_escape_string($conn, $_POST['purchase_id']), mysqli_real_escape_string($conn, $_POST['party_id']));
+            echo $purchase->fetch_purchase_bill_con(mysqli_real_escape_string($conn, $_POST['purchase_id']), mysqli_real_escape_string($conn, $_POST['parts_id']), mysqli_real_escape_string($conn, $_POST['party_id']));
         }
     } elseif($_POST['purchase_data_type'] == 'fetch_purchase_bill_spr'){
         if(!empty($_POST['purchase_id'])){
             $purchase = new Purchase();
-            echo $purchase->fetch_purchase_bill_spr(mysqli_real_escape_string($conn, $_POST['purchase_id']), mysqli_real_escape_string($conn, $_POST['party_id']));
+            echo $purchase->fetch_purchase_bill_spr(mysqli_real_escape_string($conn, $_POST['purchase_id']), mysqli_real_escape_string($conn, $_POST['parts_id']), mysqli_real_escape_string($conn, $_POST['party_id']));
         }
     } elseif($_POST['purchase_data_type'] == 'fetch_filtered_bill'){
         if(!empty($_POST['type'])){
@@ -72,9 +72,9 @@
                 }
             } else{
                 if(isset($_POST['date_range'])){
-                    echo $purchase->fetch_filtered_bill(mysqli_real_escape_string($conn, $_POST['type']), mysqli_real_escape_string($conn, $_POST['party_id']), mysqli_real_escape_string($conn, $_POST['parts_id']), mysqli_real_escape_string($conn, $_POST['parts_nickname']), mysqli_real_escape_string($conn, $_POST['date_range']));
+                    echo $purchase->fetch_filtered_bill(mysqli_real_escape_string($conn, $_POST['type']), null, mysqli_real_escape_string($conn, $_POST['party_id']), mysqli_real_escape_string($conn, $_POST['parts_id']), mysqli_real_escape_string($conn, $_POST['parts_nickname']), mysqli_real_escape_string($conn, $_POST['date_range']));
                 } else{
-                   echo $purchase->fetch_filtered_bill(mysqli_real_escape_string($conn, $_POST['type']), mysqli_real_escape_string($conn, $_POST['party_id']), mysqli_real_escape_string($conn, $_POST['parts_id']), mysqli_real_escape_string($conn, $_POST['parts_nickname'])); 
+                   echo $purchase->fetch_filtered_bill(mysqli_real_escape_string($conn, $_POST['type']), null, mysqli_real_escape_string($conn, $_POST['party_id']), mysqli_real_escape_string($conn, $_POST['parts_id']), mysqli_real_escape_string($conn, $_POST['parts_nickname'])); 
                 }
             }
         }

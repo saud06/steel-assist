@@ -665,7 +665,7 @@
                             $purchase_indx_f = $value['purchase_indx_f'];
                             $purchase_indx_l = $value['purchase_indx_l'];
                         } else{
-                            $purchase_indx_f = $purchase_indx_l + 2;
+                            $purchase_indx_f = $value['purchase_indx_l'] + 2;
                             $purchase_indx_l = $purchase_indx_f + $value['purchase_indx_l'] - 1;
                         }
 
@@ -775,7 +775,7 @@
                             $purchase_indx_f = $value['purchase_indx_f'];
                             $purchase_indx_l = $value['purchase_indx_l'];
                         } else{
-                            $purchase_indx_f = $purchase_indx_l + 2;
+                            $purchase_indx_f = $value['purchase_indx_l'] + 2;
                             $purchase_indx_l = $purchase_indx_f + $value['purchase_indx_l'] - 1;
                         }
 
@@ -806,8 +806,12 @@
         }
 
         // FETCH A CONSUMABLE PURCHASE BILL DATA
-        function fetch_purchase_bill_con($purchase_id, $party_id){
-            if($party_id){
+        function fetch_purchase_bill_con($purchase_id, $parts_id, $party_id){
+            if($parts_id && $party_id){
+                $bill_query = mysqli_query($this->conn, "SELECT * FROM rrmsteel_con_bill b INNER JOIN rrmsteel_parts pr ON pr.parts_id = b.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = b.party_id WHERE b.purchase_id = '$purchase_id' AND b.parts_id = '$parts_id' AND b.party_id = '$party_id'");
+            } elseif($parts_id && !$party_id){
+                $bill_query = mysqli_query($this->conn, "SELECT * FROM rrmsteel_con_bill b INNER JOIN rrmsteel_parts pr ON pr.parts_id = b.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = b.party_id WHERE b.purchase_id = '$purchase_id' AND b.parts_id = '$parts_id'");
+            } elseif(!$parts_id && $party_id){
                 $bill_query = mysqli_query($this->conn, "SELECT * FROM rrmsteel_con_bill b INNER JOIN rrmsteel_parts pr ON pr.parts_id = b.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = b.party_id WHERE b.purchase_id = '$purchase_id' AND b.party_id = '$party_id'");
             } else{
                 $bill_query = mysqli_query($this->conn, "SELECT * FROM rrmsteel_con_bill b INNER JOIN rrmsteel_parts pr ON pr.parts_id = b.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = b.party_id WHERE b.purchase_id = '$purchase_id'");
@@ -843,8 +847,12 @@
         }
 
         // FETCH A SPARE PURCHASE BILL DATA
-        function fetch_purchase_bill_spr($purchase_id, $party_id){
-            if($party_id){
+        function fetch_purchase_bill_spr($purchase_id, $parts_id, $party_id){
+            if($parts_id && $party_id){
+                $bill_query = mysqli_query($this->conn, "SELECT * FROM rrmsteel_spr_bill b INNER JOIN rrmsteel_parts pr ON pr.parts_id = b.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = b.party_id WHERE b.purchase_id = '$purchase_id' AND b.parts_id = '$parts_id' AND b.party_id = '$party_id'");
+            } elseif($parts_id && !$party_id){
+                $bill_query = mysqli_query($this->conn, "SELECT * FROM rrmsteel_spr_bill b INNER JOIN rrmsteel_parts pr ON pr.parts_id = b.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = b.party_id WHERE b.purchase_id = '$purchase_id' AND b.parts_id = '$parts_id'");
+            } elseif(!$parts_id && $party_id){
                 $bill_query = mysqli_query($this->conn, "SELECT * FROM rrmsteel_spr_bill b INNER JOIN rrmsteel_parts pr ON pr.parts_id = b.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = b.party_id WHERE b.purchase_id = '$purchase_id' AND b.party_id = '$party_id'");
             } else{
                 $bill_query = mysqli_query($this->conn, "SELECT * FROM rrmsteel_spr_bill b INNER JOIN rrmsteel_parts pr ON pr.parts_id = b.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = b.party_id WHERE b.purchase_id = '$purchase_id'");
@@ -853,6 +861,7 @@
             if(mysqli_num_rows($bill_query) > 0){
                 while($row = mysqli_fetch_assoc($bill_query)){
                     $data[] = [
+                        'bill_id' => $row['bill_id'],
                         'purchase_id' => $row['purchase_id'],
                         'parts_id' => $row['parts_id'],
                         'parts_name' => $row['parts_name'],
@@ -1402,6 +1411,8 @@
                             // PARTY
                             $party_id = $row['party_id'];
                             $party_name = $row['party_name'];
+
+                            $party_name_txt = '<span class="data-span">' . $party_name . '</span>';
 
                             $party_name_txt .= '<div class="data-input d-none">';
                                 $party_name_txt .= '<select class="select-b-party" onchange="party_name_2(this)">';
@@ -3938,7 +3949,7 @@
 
         // FETCH FILTERED PURCHASE
         function fetch_filtered_bill($type, $availability = null, $party_id, $parts_id, $parts_nickname, $date_range = null){
-            $data1 = []; $data2 = []; $flag = 1;
+            $data1 = []; $data2 = [];
 
             if($date_range){
                 $date_range = explode(' to ', $date_range);
@@ -5439,6 +5450,9 @@
 
                     if(mysqli_num_rows($con_bill_query) > 0){
                         while($row = mysqli_fetch_assoc($con_bill_query)){
+                            $purchase_id = $row['purchase_id'];
+                            $parts_id = $row['parts_id'];
+                            $party_id = $row['party_id'];
                             $required_for = $row['required_for'];
 
                             if($required_for == 1)
@@ -5537,15 +5551,15 @@
 
                             $data1[] = [
                                 'sl' => ++$i,
-                                'purchase_id' => $row['purchase_id'],
+                                'purchase_id' => $purchase_id,
                                 'reference' => 'RRM\\CONSUMABLE-REQUISITION\\' . date('Y') . '-' . $row['requisition_id'],
                                 'required_for' => $required_for,
-                                'parts_id' => $row['parts_id'],
+                                'parts_id' => $parts_id,
                                 'parts_name' => $row['parts_name'],
                                 'parts_qty' => $row['qty'] . ' ' . $parts_unit,
                                 'price' => $parts_price_txt,
-                                'party_id' => $row['party_id'],
-                                'party_name' => $row['party_name'],
+                                'party_id' => $party_id,
+                                'party_name' => $row['party_name'] . '&emsp;' . (($availability && $availability == 2) ? '<a title="Generate Bill" href="javascript:void(0)" class="btn btn-xs btn-secondary generate-bill" data-toggle="modal" data-id="'.$purchase_id.'" data-target=".full-width-modal-4" onclick="generate_bill(' . $purchase_id . ', 1, ' . $party_id . ', ' . $parts_id . ')"><i class="mdi mdi-format-line-weight"></i></a>' : ''),
                                 'date' => (isset($row['purchase_date'])) ? $row['purchase_date'] : null,
                                 'date2' => (isset($row['generate_date'])) ? $row['generate_date'] : null,
                             ];
@@ -5558,6 +5572,9 @@
 
                     if(mysqli_num_rows($spr_bill_query) > 0){
                         while($row = mysqli_fetch_assoc($spr_bill_query)){
+                            $purchase_id = $row['purchase_id'];
+                            $parts_id = $row['parts_id'];
+                            $party_id = $row['party_id'];
                             $required_for = $row['required_for'];
 
                             if($required_for == 1)
@@ -5656,15 +5673,15 @@
 
                             $data2[] = [
                                 'sl' => ++$i,
-                                'purchase_id' => $row['purchase_id'],
+                                'purchase_id' => $purchase_id,
                                 'reference' => 'RRM\\SPARE-REQUISITION\\' . date('Y') . '-' . $row['requisition_id'],
                                 'required_for' => $required_for,
-                                'parts_id' => $row['parts_id'],
+                                'parts_id' => $parts_id,
                                 'parts_name' => $row['parts_name'],
                                 'parts_qty' => $row['qty'] . ' ' . $parts_unit,
                                 'price' => $parts_price_txt,
-                                'party_id' => $row['party_id'],
-                                'party_name' => $row['party_name'],
+                                'party_id' => $party_id,
+                                'party_name' => $row['party_name'] . '&emsp;' . (($availability && $availability == 2) ? '<a title="Generate Bill" href="javascript:void(0)" class="btn btn-xs btn-secondary generate-bill" data-toggle="modal" data-id="'.$purchase_id.'" data-target=".full-width-modal-4" onclick="generate_bill(' . $purchase_id . ', 2, ' . $party_id . ', ' . $parts_id . ')"><i class="mdi mdi-format-line-weight"></i></a>' : ''),
                                 'date' => (isset($row['purchase_date'])) ? $row['purchase_date'] : null,
                                 'date2' => (isset($row['generate_date'])) ? $row['generate_date'] : null,
                             ];
@@ -6450,7 +6467,7 @@
                     }
                 } elseif($party_id && $parts_id && !$parts_nickname){
                     if($availability == 1){
-                        if(date_range == null){
+                        if($date_range == null){
                             $con_bill_query = mysqli_query($this->conn, "SELECT prd.*, prd.parts_qty AS qty, p.parts_name, p.unit, pt.party_name, pr.requisition_id FROM rrmsteel_con_purchase_data prd INNER JOIN rrmsteel_con_purchase pr ON pr.purchase_id = prd.purchase_id INNER JOIN rrmsteel_parts p ON p.parts_id = prd.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = prd.party_id WHERE p.parts_id = '$parts_id' AND pt.party_id = '$party_id' AND (NOT EXISTS (SELECT b.parts_id FROM rrmsteel_con_bill b WHERE b.purchase_id = prd.purchase_id AND b.parts_id = prd.parts_id AND b.qty >= prd.parts_qty))");
                             $spr_bill_query = mysqli_query($this->conn, "SELECT prd.*, prd.parts_qty AS qty, p.parts_name, p.unit, pt.party_name, pr.requisition_id FROM rrmsteel_spr_purchase_data prd INNER JOIN rrmsteel_con_purchase pr ON pr.purchase_id = prd.purchase_id INNER JOIN rrmsteel_parts p ON p.parts_id = prd.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = prd.party_id WHERE p.parts_id = '$parts_id' AND pt.party_id = '$party_id' AND (NOT EXISTS (SELECT b.parts_id FROM rrmsteel_spr_bill b WHERE b.purchase_id = prd.purchase_id AND b.parts_id = prd.parts_id AND b.qty >= prd.parts_qty))");
                         } else{
@@ -6458,7 +6475,7 @@
                             $spr_bill_query = mysqli_query($this->conn, "SELECT prd.*, prd.parts_qty AS qty, p.parts_name, p.unit, pt.party_name, pr.requisition_id FROM rrmsteel_spr_purchase_data prd INNER JOIN rrmsteel_con_purchase pr ON pr.purchase_id = prd.purchase_id INNER JOIN rrmsteel_parts p ON p.parts_id = prd.parts_id INNER JOIN rrmsteel_party pt ON pt.party_id = prd.party_id WHERE p.parts_id = '$parts_id' AND pt.party_id = '$party_id' AND prd.purchase_date >= '$start_date' AND prd.purchase_date <= '$end_date' AND (NOT EXISTS (SELECT b.parts_id FROM rrmsteel_spr_bill b WHERE b.purchase_id = prd.purchase_id AND b.parts_id = prd.parts_id AND b.qty >= prd.parts_qty))");
                         }
                     } else{
-                        if(date_range == null){
+                        if($date_range == null){
                             $con_bill_query = mysqli_query($this->conn, "SELECT b.*, pt.parts_name, pt.unit, py.party_name, pr.requisition_id FROM rrmsteel_con_bill b INNER JOIN rrmsteel_con_purchase pr ON pr.purchase_id = b.purchase_id INNER JOIN rrmsteel_parts pt ON pt.parts_id = b.parts_id INNER JOIN rrmsteel_party py ON py.party_id = b.party_id WHERE pt.parts_id = '$parts_id' AND py.party_id = '$party_id' AND b.generate_status = 0");
                             $spr_bill_query = mysqli_query($this->conn, "SELECT b.*, pt.parts_name, pt.unit, py.party_name, pr.requisition_id FROM rrmsteel_spr_bill b INNER JOIN rrmsteel_spr_purchase pr ON pr.purchase_id = b.purchase_id INNER JOIN rrmsteel_parts pt ON pt.parts_id = b.parts_id INNER JOIN rrmsteel_party py ON py.party_id = b.party_id WHERE pt.parts_id = '$parts_id' AND py.party_id = '$party_id' AND b.generate_date >= '$start_date' AND b.generate_date <= '$end_date' AND b.generate_status = 0");
                         } else{

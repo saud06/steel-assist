@@ -733,6 +733,8 @@
                                                     <select data-placeholder="Choose" class="form-control select-b bill-party">
                                                         <option value="Choose"></option>
                                                     </select>
+
+                                                    <input type="hidden" class="temp-bill-parts">
                                                 </div>
                                             </div>
 
@@ -1310,10 +1312,12 @@
                                                         trHTML += '</td>';
 
                                                         trHTML += '<td class="align-middle text-center">';
-                                                            trHTML += '<a title="Edit" href="javascript:void(0)" class="btn btn-xs btn-info mr-1 edt-btn" onclick="edit_btn(this)"><i class="mdi mdi-pencil"></i></a>';
-                                                            trHTML += '<a title="Cancel" href="javascript:void(0)" class="btn btn-xs btn-warning d-none mr-1 cncl-btn" onclick="cancel_btn(this)"><i class="mdi mdi-cancel"></i></a>';
-                                                            trHTML += '<a title="Update" href="javascript:void(0)" class="btn btn-xs btn-success d-none mr-1 upd-btn" onclick="update_purchase_data_con(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_1.purchase_id + ', ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-arrow-up-bold-outline"></i></a>';
-                                                            trHTML += '<a title="Delete" href="javascript:void(0)" class="btn btn-xs btn-danger dlt-btn" onclick="delete_purchase_data_con(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + purchase_item_1.purchase_id + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-delete"></i></a>';
+                                                            if(data.Reply3[j].bill_available == 0){
+                                                                trHTML += '<a title="Edit" href="javascript:void(0)" class="btn btn-xs btn-info mr-1 edt-btn" onclick="edit_btn(this)"><i class="mdi mdi-pencil"></i></a>';
+                                                                trHTML += '<a title="Cancel" href="javascript:void(0)" class="btn btn-xs btn-warning d-none mr-1 cncl-btn" onclick="cancel_btn(this)"><i class="mdi mdi-cancel"></i></a>';
+                                                                trHTML += '<a title="Update" href="javascript:void(0)" class="btn btn-xs btn-success d-none mr-1 upd-btn" onclick="update_purchase_data_con(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_1.purchase_id + ', ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-arrow-up-bold-outline"></i></a>';
+                                                                trHTML += '<a title="Delete" href="javascript:void(0)" class="btn btn-xs btn-danger dlt-btn" onclick="delete_purchase_data_con(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + purchase_item_1.purchase_id + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-delete"></i></a>';
+                                                            }
                                                         trHTML += '</td>';
                                                     trHTML += '</tr>';
                                                 }
@@ -1612,10 +1616,12 @@
                                                         trHTML += '</td>';
 
                                                         trHTML += '<td class="align-middle text-center">';
-                                                            trHTML += '<a title="Edit" href="javascript:void(0)" class="btn btn-xs btn-info mr-1 edt-btn" onclick="edit_btn(this)"><i class="mdi mdi-pencil"></i></a>';
-                                                            trHTML += '<a title="Cancel" href="javascript:void(0)" class="btn btn-xs btn-warning d-none mr-1 cncl-btn" onclick="cancel_btn(this)"><i class="mdi mdi-cancel"></i></a>';
-                                                            trHTML += '<a title="Update" href="javascript:void(0)" class="btn btn-xs btn-success d-none mr-1 upd-btn" onclick="update_purchase_data_spr(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_1.purchase_id + ', ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-arrow-up-bold-outline"></i></a>';
-                                                            trHTML += '<a title="Delete" href="javascript:void(0)" class="btn btn-xs btn-danger dlt-btn" onclick="delete_purchase_data_spr(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + purchase_item_1.purchase_id + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-delete"></i></a>';
+                                                            if(data.Reply3[j].bill_available == 0){
+                                                                trHTML += '<a title="Edit" href="javascript:void(0)" class="btn btn-xs btn-info mr-1 edt-btn" onclick="edit_btn(this)"><i class="mdi mdi-pencil"></i></a>';
+                                                                trHTML += '<a title="Cancel" href="javascript:void(0)" class="btn btn-xs btn-warning d-none mr-1 cncl-btn" onclick="cancel_btn(this)"><i class="mdi mdi-cancel"></i></a>';
+                                                                trHTML += '<a title="Update" href="javascript:void(0)" class="btn btn-xs btn-success d-none mr-1 upd-btn" onclick="update_purchase_data_spr(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_1.purchase_id + ', ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-arrow-up-bold-outline"></i></a>';
+                                                                trHTML += '<a title="Delete" href="javascript:void(0)" class="btn btn-xs btn-danger dlt-btn" onclick="delete_purchase_data_spr(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + purchase_item_1.purchase_id + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-delete"></i></a>';
+                                                            }
                                                         trHTML += '</td>';
                                                     trHTML += '</tr>';
                                                 }
@@ -1699,7 +1705,8 @@
                 });
 
                 $('.upd-bill-status').click(function(){
-                    let party_id = $('.bill-party').val(),
+                    let parts_id = $('.temp-bill-parts').val(),
+                        party_id = $('.bill-party').val(),
                         bill_date = $('.bill-date').val(),
                         bill_type = $('#temp_bill_type').val();
 
@@ -1728,6 +1735,7 @@
                                 data: {
                                     purchase_data_type: (bill_type == 1) ? 'fetch_purchase_bill_con' : 'fetch_purchase_bill_spr',
                                     purchase_id: $('#temp_purchase_id').val(),
+                                    parts_id: parts_id,
                                     party_id: party_id
                                 },
                                 dataType: 'json',
@@ -1740,6 +1748,8 @@
 
                                     $.each(data.Reply, function(i, purchase_item){
                                         bill_id_arr.push(purchase_item.bill_id);
+
+                                        
 
                                         if(purchase_item.parts_unit == 1)
                                             parts_unit = 'Bag';
@@ -1873,10 +1883,15 @@
 
                             total_price = Math.ceil(total_price);
 
-                            if(total_price == 0)
+                            if(total_price == 0){
                                 $('.total-price-in-words').show().empty().html('Amount in Words: Zero Taka Only.');
-                            else
+                            } else{
                                 $('.total-price-in-words').show().empty().html('Amount in Words: ' + in_words(total_price) + ' Taka Only.');
+                            }
+
+                            if(parts_id){
+                                fetch_purchase_data(parseInt($('.filter-category').val()), parseInt($('.status').val()), parseInt($('input[name="availability"]:checked').val()));
+                            }
                         });
                     } else{
                         Swal.fire({
@@ -1929,9 +1944,9 @@
                         }
                     }).then(function(){
                         if($('.filter-category').val() == 1){
-                            fetch_purchase_data($('.filter-category').val(), 2);
+                            fetch_purchase_data(parseInt($('.filter-category').val()), 2);
                         } else{
-                            fetch_purchase_data($('.filter-category').val(), 2, $('input[name="availability"]:checked').val());
+                            fetch_purchase_data(parseInt($('.filter-category').val()), 2, parseInt($('input[name="availability"]:checked').val()));
                         }
                     });
                 });
@@ -1972,9 +1987,9 @@
                         }
                     }).then(function(){
                         if($('.filter-category').val() == 2 && $('.status').val() == 2){
-                            fetch_purchase_data($('.filter-category').val(), $('.status').val(), $('input[name="availability"]:checked').val());
+                            fetch_purchase_data(parseInt($('.filter-category').val()), parseInt($('.status').val()), parseInt($('input[name="availability"]:checked').val()));
                         } else{
-                            fetch_purchase_data($('.filter-category').val(), $('.status').val());
+                            fetch_purchase_data(parseInt($('.filter-category').val()), parseInt($('.status').val()));
                         }
                     });
                 });
@@ -1992,7 +2007,7 @@
                             }, 100);
                         }
                     }).then(function(){
-                        fetch_purchase_data(2, 2, $('input[name="availability"]:checked').val());
+                        fetch_purchase_data(2, 2, parseInt($('input[name="availability"]:checked').val()));
                     });
                 });
 
@@ -2045,7 +2060,7 @@
                             }, 100);
                         }
                     }).then(function(){
-                        fetch_purchase_data(1, type, null, party_id, parts_id, parts_nickname, date_range);
+                        fetch_purchase_data(1, parseInt(type), null, parseInt(party_id), parseInt(parts_id), parts_nickname, date_range);
                     });
                 });
 
@@ -2072,9 +2087,9 @@
                         }
                     }).then(function(){
                         if(type == 2){
-                            fetch_purchase_data(2, type, $('input[name="availability"]:checked').val(), party_id, parts_id, parts_nickname, date_range);
+                            fetch_purchase_data(2, parseInt(type), parseInt($('input[name="availability"]:checked').val()), parseInt(party_id), parseInt(parts_id), parts_nickname, date_range);
                         } else{
-                            fetch_purchase_data(2, type, null, party_id, parts_id, parts_nickname, date_range);
+                            fetch_purchase_data(2, parseInt(type), null, parseInt(party_id), parseInt(parts_id), parts_nickname, date_range);
                         }
                     });
                 });
@@ -2401,6 +2416,7 @@
 
             // FETCH PURCHASE DATA
             function fetch_purchase_data(filter_cat, type, availability = null, party_id = null, parts_id = null, parts_nickname = null, date_range = null){
+                console.log(filter_cat, type, availability);
                 let col_title = '';
                 
                 if(filter_cat == 1){
@@ -2413,7 +2429,7 @@
                     if(type == 1){
                         col_title = 'Generate Date';
                     } else{
-                        col_title = 'Bill Date';
+                        col_title = 'Bill Dates';
                     }
                 }
 
@@ -2483,16 +2499,24 @@
                                             let int_val = function(i){
                                                 return typeof i === 'string' ? i.match(/\d+/)*1 : typeof i === 'number' ? i : 0;
                                             };
+
+                                            if(parts_id || parts_nickname){
+                                                // Total qty.
+                                                let total_qty = api.column(4).data().reduce(function(a, b){
+                                                    return int_val(a) + int_val(b);
+                                                }, 0);
+
+                                                // Update footer qty.
+                                                $(api.column(4).footer()).html('Total Qty.: ' + total_qty.toFixed(3));
+                                            }
                                  
-                                            // Total
-                                            let total = api.column(5).data().reduce(function(a, b){
-                                                return a;
+                                            // Total price
+                                            let total_price = api.column(5).data().reduce(function(a, b){
+                                                return int_val(a) + int_val(b);
                                             }, 0);
 
-                                            console.log(total);
-
-                                            // Update footer
-                                            // $(api.column(5).footer()).html('Total Price: <i class="mdi mdi-currency-bdt"></i>' + total.toFixed(2));
+                                            // Update footer price
+                                            $(api.column(5).footer()).html('Total Price: <i class="mdi mdi-currency-bdt"></i>' + total_price.toFixed(2));
                                         }
                                     }
                                 });
@@ -2534,14 +2558,24 @@
                                         let int_val = function(i){
                                             return typeof i === 'string' ? i.match(/\d+/)*1 : typeof i === 'number' ? i : 0;
                                         };
+
+                                        if(parts_id || parts_nickname){
+                                            // Total qty.
+                                            let total_qty = api.column(4).data().reduce(function(a, b){
+                                                return int_val(a) + int_val(b);
+                                            }, 0);
+
+                                            // Update footer qty.
+                                            $(api.column(4).footer()).html('Total Qty.: ' + total_qty.toFixed(3));
+                                        }
                              
-                                        // Total
-                                        let total = api.column(5).data().reduce(function(a, b){
+                                        // Total price
+                                        let total_price = api.column(5).data().reduce(function(a, b){
                                             return int_val(a) + int_val(b);
                                         }, 0);
 
-                                        // Update footer
-                                        $(api.column(5).footer()).html('Total Price: <i class="mdi mdi-currency-bdt"></i>' + total.toFixed(2));
+                                        // Update footer price
+                                        $(api.column(5).footer()).html('Total Price: <i class="mdi mdi-currency-bdt"></i>' + total_price.toFixed(2));
 
                                         (availability == 1) ? $(api.column(7).footer()).html('Purchase Date') : $(this.api().column(7).footer()).html('Generate Date');
                                     }
@@ -2970,7 +3004,7 @@
 
                                                         $('.upd-multiple-div').addClass('d-none');
 
-                                                        fetch_purchase_data($('.filter-category').val(), $('.status').val());
+                                                        fetch_purchase_data(parseInt($('.filter-category').val()), parseInt($('.status').val()));
                                                     }
                                                 });
                                             });
@@ -4882,10 +4916,12 @@
                                                 trHTML += '</td>';
 
                                                 trHTML += '<td class="align-middle text-center">';
-                                                    trHTML += '<a title="Edit" href="javascript:void(0)" class="btn btn-xs btn-info mr-1 edt-btn" onclick="edit_btn(this)"><i class="mdi mdi-pencil"></i></a>';
-                                                    trHTML += '<a title="Cancel" href="javascript:void(0)" class="btn btn-xs btn-warning d-none mr-1 cncl-btn" onclick="cancel_btn(this)"><i class="mdi mdi-cancel"></i></a>';
-                                                    trHTML += '<a title="Update" href="javascript:void(0)" class="btn btn-xs btn-success d-none mr-1 upd-btn" onclick="update_purchase_data_con(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_1.purchase_id + ', ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-arrow-up-bold-outline"></i></a>';
-                                                    trHTML += '<a title="Delete" href="javascript:void(0)" class="btn btn-xs btn-danger dlt-btn" onclick="delete_purchase_data_con(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + purchase_item_1.purchase_id + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-delete"></i></a>';
+                                                    if(data.Reply3[j].bill_available == 0){
+                                                        trHTML += '<a title="Edit" href="javascript:void(0)" class="btn btn-xs btn-info mr-1 edt-btn" onclick="edit_btn(this)"><i class="mdi mdi-pencil"></i></a>';
+                                                        trHTML += '<a title="Cancel" href="javascript:void(0)" class="btn btn-xs btn-warning d-none mr-1 cncl-btn" onclick="cancel_btn(this)"><i class="mdi mdi-cancel"></i></a>';
+                                                        trHTML += '<a title="Update" href="javascript:void(0)" class="btn btn-xs btn-success d-none mr-1 upd-btn" onclick="update_purchase_data_con(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_1.purchase_id + ', ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-arrow-up-bold-outline"></i></a>';
+                                                        trHTML += '<a title="Delete" href="javascript:void(0)" class="btn btn-xs btn-danger dlt-btn" onclick="delete_purchase_data_con(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + purchase_item_1.purchase_id + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-delete"></i></a>';
+                                                    }
                                                 trHTML += '</td>';
                                             trHTML += '</tr>';
                                         }
@@ -5362,7 +5398,7 @@
                                         confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!'
                                     });
 
-                                    fetch_purchase_data($('.filter-category').val(), $('.status').val());
+                                    fetch_purchase_data(parseInt($('.filter-category').val()), parseInt($('.status').val()));
                                 });
                             } else if(data.Type == 'error'){
                                 Swal.fire({
@@ -5542,7 +5578,7 @@
                                     }).then(function(){
                                         // window.location.reload(true);
 
-                                        fetch_purchase_data($('.filter-category').val(), $('.status').val());
+                                        fetch_purchase_data(parseInt($('.filter-category').val()), parseInt($('.status').val()));
                                     });
                                 } else if(data.Type == 'error'){
                                     Swal.fire({
@@ -5814,10 +5850,12 @@
                                                 trHTML += '</td>';
 
                                                 trHTML += '<td class="align-middle text-center">';
-                                                    trHTML += '<a title="Edit" href="javascript:void(0)" class="btn btn-xs btn-info mr-1 edt-btn" onclick="edit_btn(this)"><i class="mdi mdi-pencil"></i></a>';
-                                                    trHTML += '<a title="Cancel" href="javascript:void(0)" class="btn btn-xs btn-warning d-none mr-1 cncl-btn" onclick="cancel_btn(this)"><i class="mdi mdi-cancel"></i></a>';
-                                                    trHTML += '<a title="Update" href="javascript:void(0)" class="btn btn-xs btn-success d-none mr-1 upd-btn" onclick="update_purchase_data_spr(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_1.purchase_id + ', ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-arrow-up-bold-outline"></i></a>';
-                                                    trHTML += '<a title="Delete" href="javascript:void(0)" class="btn btn-xs btn-danger dlt-btn" onclick="delete_purchase_data_spr(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + purchase_item_1.purchase_id + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-delete"></i></a>';
+                                                    if(data.Reply3[j].bill_available == 0){
+                                                        trHTML += '<a title="Edit" href="javascript:void(0)" class="btn btn-xs btn-info mr-1 edt-btn" onclick="edit_btn(this)"><i class="mdi mdi-pencil"></i></a>';
+                                                        trHTML += '<a title="Cancel" href="javascript:void(0)" class="btn btn-xs btn-warning d-none mr-1 cncl-btn" onclick="cancel_btn(this)"><i class="mdi mdi-cancel"></i></a>';
+                                                        trHTML += '<a title="Update" href="javascript:void(0)" class="btn btn-xs btn-success d-none mr-1 upd-btn" onclick="update_purchase_data_spr(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_1.purchase_id + ', ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-arrow-up-bold-outline"></i></a>';
+                                                        trHTML += '<a title="Delete" href="javascript:void(0)" class="btn btn-xs btn-danger dlt-btn" onclick="delete_purchase_data_spr(' + purchase_item_2.purchase_data_id + ', this, ' + purchase_item_2.parts_id + ', ' + purchase_item_1.required_for + ', ' + purchase_item_1.purchase_id + ', ' + requisition_id + ', ' + tr_indx + ', ' + generate_bill_len + ')"><i class="mdi mdi-delete"></i></a>';
+                                                    }
                                                 trHTML += '</td>';
                                             trHTML += '</tr>';
                                         }
@@ -6294,7 +6332,7 @@
                                         confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!'
                                     });
 
-                                    fetch_purchase_data($('.filter-category').val(), $('.status').val());
+                                    fetch_purchase_data(parseInt($('.filter-category').val()), parseInt($('.status').val()));
                                 });
                             } else if(data.Type == 'error'){
                                 Swal.fire({
@@ -6485,7 +6523,7 @@
                                             confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!'
                                         });
 
-                                        fetch_purchase_data($('.filter-category').val(), $('.status').val());
+                                        fetch_purchase_data(parseInt($('.filter-category').val()), parseInt($('.status').val()));
                                     });
                                 } else if(data.Type == 'error'){
                                     Swal.fire({
@@ -6521,69 +6559,83 @@
 
             // ADD PURCHASE BILL
             function add_bill(ele, ele2, ele3, ele4, ele5, ele6, ele7, ele8, ele9, ele10, ele11){
-                let parts_id = ele,
-                    qty = ele2,
-                    price = ele3,
-                    party_id = ele4,
-                    purchase_id = ele5,
-                    purchase_data_id = ele6,
-                    required_for = ele11;
-                
-                    $.ajax({
-                        url: '../../api/interactionController',
-                        method: 'post',
-                        data: {
-                            interact_type: 'add',
-                            interact: (ele8 == 1) ? 'bill_con' : 'bill_spr',
-                            purchase_id: purchase_id,
-                            purchase_data_id: purchase_data_id,
-                            parts_id: parts_id,
-                            qty: qty,
-                            price: price,
-                            party_id: party_id,
-                            required_for: required_for
-                        },
-                        dataType: 'json',
-                        cache: false,
-                        success: function(data){
-                            if(data.Type == 'success'){
-                                $(ele7).closest('tr').find('td:eq(1)').empty().html('<span title="Added to Bill" class="text-success"><i class="mdi mdi-18px mdi-check"></i></span>');
+                Swal.fire({
+                    title: 'Are you sure you want to add?',
+                    text: 'Once you add this to bill, you cannot update or delete this record anymore!',
+                    type: 'warning',
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    confirmButtonColor: '#5cb85c',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '<i class="fas fa-check"></i>&nbsp;&nbsp; Yes',
+                    cancelButtonText: '<i class="fas fa-times"></i>&nbsp;&nbsp; No'
+                }).then(function(result){
+                    if(result.value){
+                        let parts_id = ele,
+                            qty = ele2,
+                            price = ele3,
+                            party_id = ele4,
+                            purchase_id = ele5,
+                            purchase_data_id = ele6,
+                            required_for = ele11;
+                        
+                        $.ajax({
+                            url: '../../api/interactionController',
+                            method: 'post',
+                            data: {
+                                interact_type: 'add',
+                                interact: (ele8 == 1) ? 'bill_con' : 'bill_spr',
+                                purchase_id: purchase_id,
+                                purchase_data_id: purchase_data_id,
+                                parts_id: parts_id,
+                                qty: qty,
+                                price: price,
+                                party_id: party_id,
+                                required_for: required_for
+                            },
+                            dataType: 'json',
+                            cache: false,
+                            success: function(data){
+                                if(data.Type == 'success'){
+                                    $(ele7).closest('tr').find('td:eq(1)').empty().html('<span title="Added to Bill" class="text-success"><i class="mdi mdi-18px mdi-check"></i></span>');
 
-                                if(ele10 == 0 && bill_btn_count == 0){
-                                    (ele8 == 1) ? $('#third_body').find('tr:eq('+ele9+')').find('td:eq(6)').append('<a title="Generate Bill" href="javascript:void(0)" class="btn btn-xs btn-secondary generate-bill" data-toggle="modal" data-id="'+purchase_id+'" data-target=".full-width-modal-4" onclick="generate_bill(' + purchase_id + ', 1)"><i class="mdi mdi-format-line-weight"></i></a>') : $('#forth_body').find('tr:eq('+ele9+')').find('td:eq(6)').append('<a title="Generate Bill" href="javascript:void(0)" class="btn btn-xs btn-secondary generate-bill-2" data-toggle="modal" data-id="'+purchase_id+'" data-target=".full-width-modal-4" onclick="generate_bill(' + purchase_id + ', 2)"><i class="mdi mdi-format-line-weight"></i></a>');
+                                    if(ele10 == 0 && bill_btn_count == 0){
+                                        (ele8 == 1) ? $('#third_body').find('tr:eq('+ele9+')').find('td:eq(6)').append('<a title="Generate Bill" href="javascript:void(0)" class="btn btn-xs btn-secondary generate-bill" data-toggle="modal" data-id="'+purchase_id+'" data-target=".full-width-modal-4" onclick="generate_bill(' + purchase_id + ', 1)"><i class="mdi mdi-format-line-weight"></i></a>') : $('#forth_body').find('tr:eq('+ele9+')').find('td:eq(6)').append('<a title="Generate Bill" href="javascript:void(0)" class="btn btn-xs btn-secondary generate-bill-2" data-toggle="modal" data-id="'+purchase_id+'" data-target=".full-width-modal-4" onclick="generate_bill(' + purchase_id + ', 2)"><i class="mdi mdi-format-line-weight"></i></a>');
 
-                                    bill_btn_count++;
+                                        bill_btn_count++;
+                                    }
+                                } else if(data.Type == 'error'){
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: data.Reply,
+                                        type: 'error',
+                                        width: 450,
+                                        showCloseButton: true,
+                                        confirmButtonColor: '#5cb85c',
+                                        confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!',
+                                        footer: 'Something went wrong.'
+                                    });
+                                } else{
+                                    Swal.fire({
+                                        title: 'Info',
+                                        text: 'Server is under maintenance. Please try again later!',
+                                        type: 'info',
+                                        width: 450,
+                                        showCloseButton: true,
+                                        confirmButtonColor: '#5cb85c',
+                                        confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!'
+                                    });
                                 }
-                            } else if(data.Type == 'error'){
-                                Swal.fire({
-                                    title: 'Error',
-                                    text: data.Reply,
-                                    type: 'error',
-                                    width: 450,
-                                    showCloseButton: true,
-                                    confirmButtonColor: '#5cb85c',
-                                    confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!',
-                                    footer: 'Something went wrong.'
-                                });
-                            } else{
-                                Swal.fire({
-                                    title: 'Info',
-                                    text: 'Server is under maintenance. Please try again later!',
-                                    type: 'info',
-                                    width: 450,
-                                    showCloseButton: true,
-                                    confirmButtonColor: '#5cb85c',
-                                    confirmButtonText: '<i class="fas fa-thumbs-up"></i>&nbsp;&nbsp; Okay!'
-                                });
-                            }
 
-                            return false;
-                        }
-                    });
+                                return false;
+                            }
+                        });
+                    }
+                });
             }
 
             // GENERATE PURCHASE BILL
-            function generate_bill(ele, ele2){
+            function generate_bill(ele, ele2, ele3 = null, ele4 = null){
                 $('#temp_purchase_id').val(ele);
                 $('#temp_bill_type').val(ele2);
 
@@ -6637,8 +6689,20 @@
                                     party_filtered = party_arr.filter(({party_id}, i) => !party_ids.includes(party_id, i + 1)),
                                     party_option = '';
 
-                                party_filtered.forEach(function(ele){
-                                    party_option += '<option value="'+ele.party_id+'">'+ ele.party_name +'</option>';
+                                party_filtered.forEach(function(party){
+                                    if(ele3) {
+                                        $('.bill-party').prop('disabled', true);
+                                        $('.temp-bill-parts').val(ele4);
+
+                                        let selected = (party.party_id == ele3) ? 'selected' : '';
+
+                                        party_option += '<option ' + selected + ' value="'+party.party_id+'">'+ party.party_name +'</option>';
+                                    } else{
+                                        $('.bill-party').prop('disabled', false);
+                                        $('.temp-bill-parts').val('');
+
+                                        party_option += '<option value="'+party.party_id+'">'+ party.party_name +'</option>';
+                                    }
                                 });
 
                                 $('.bill-party').empty().append('<option value="">Choose</option>' + party_option);
